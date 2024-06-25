@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="메뉴바2.css">
+    <title>SmartDiet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff0f4;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px; /* 메뉴바 고정에 따른 내용 밀림 보정 */
+        }
+        .container {
+            max-width: 1500px;
+            margin: 100px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group select {
+            height: 40px;
+        }
+        .form-group input[type="time"] {
+            padding: 5px;
+        }
+        .form-group input[type="radio"] {
+            width: auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+        .form-group h2 {
+            color:#383838;
+        }
+        header#title a {
+            text-decoration: none; /* 링크 텍스트의 밑줄 제거 */
+        }
+    </style>
+</head>
+<body>
+    <header id="title">
+        <a href="메뉴바2.html">
+            <h1>SmartDiet</h1>
+        </a>
+        <button type="button" class="mobile-menu">33</button>
+        <div class="menu">menu</div>
+    </header>
+    <header>
+        <div class="catback">
+            <div class="category">
+                <a href="index.html">마이페이지</a>
+                <a href="duration.html">체중관리 기간</a>
+                <a href="main2.html">식단/운동/체중</a>
+                <a href="information.html">다이어트 꿀팁</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <form id="weightForm">
+            <div class="form-group">
+                <label for="dob"><h2>생년월일</h2></label>
+                <input type="date" id="dob" name="dob" required>
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+            </div>
+            <div class="form-group">
+                <label><h2>성별</h2></label>
+                <label for="male">남성(male)</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="female">여성(female)</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+            </div>
+            <div class="form-group">
+                <label><h2>신체</h2></label>
+                <label for="height">키 (cm)</label>
+                <input type="number" id="height" name="height" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">몸무게 (kg)</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
+            <div class="form-group">
+                <label for="goal-weight">목표 체중 (kg)</label>
+                <input type="number" id="goal-weight" name="goal-weight" required>
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+            </div>
+            <div class="form-group">
+                <label for="activity-level"><h2>평소 활동량</h2></label>
+                <select id="activity-level" name="activity-level">
+                    <option value="inactive">소극적</option>
+                    <option value="lightly-active">약간 활동적</option>
+                    <option value="moderately-active">중간 정도 활동적</option>
+                    <option value="very-active">적극적</option>
+                    <option value="super-active">매우 적극적</option>
+                </select>
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+            </div>
+            <div class="form-group">
+                <label><h2>평소 식사 시간</h2></label>
+                <label for="breakfast-time">아침  breakfast</label>
+                <input type="time" id="breakfast-time" name="breakfast-time">
+            </div>
+            <div class="form-group">
+                <label for="lunch-time">점심  lunch</label>
+                <input type="time" id="lunch-time" name="lunch-time">
+            </div>
+            <div class="form-group">
+                <label for="dinner-time">저녁  dinner</label>
+                <input type="time" id="dinner-time" name="dinner-time">
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+            </div>
+            <div class="form-group">
+                <label><h2>평소 수면 습관</h2></label>
+                <label for="bedtime">취침 시간</label>
+                <input type="time" id="bedtime" name="bedtime">
+            </div>
+            <div class="form-group">
+                <label for="waketime">기상 시간</label>
+                <input type="time" id="waketime" name="waketime">
+            </div>
+            <div class="buttons">
+                <button type="button" id="saveButton">저장</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 저장 버튼 클릭 시 데이터 저장
+        document.getElementById('saveButton').addEventListener('click', function() {
+            const formData = {
+                dob: document.getElementById('dob').value,
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value,
+                goalWeight: document.getElementById('goal-weight').value,
+                activityLevel: document.getElementById('activity-level').value,
+                breakfastTime: document.getElementById('breakfast-time').value,
+                lunchTime: document.getElementById('lunch-time').value,
+                dinnerTime: document.getElementById('dinner-time').value,
+                bedtime: document.getElementById('bedtime').value,
+                waketime: document.getElementById('waketime').value
+            };
+
+            // 데이터를 localStorage에 저장
+            localStorage.setItem('weightFormData', JSON.stringify(formData));
+            alert('저장완료 !');
+        });
+        
+    </script>
+</body>
+</html>

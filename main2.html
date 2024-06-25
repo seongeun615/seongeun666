@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartDiet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff0f4;
+            margin: 70px;
+            padding: 20px;
+        }
+        .grid-container {
+            max-width: 1700px;
+            margin: auto;
+            background-color: white;
+            padding: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3개의 열로 설정 */
+            gap: 20px; /* 그리드 아이템 사이의 간격 */
+        }
+        .grid-item {
+            background-color: rgb(253, 249, 222);
+            width: 335px;
+            margin:auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            height: 800px;
+            flex-direction: row;
+            display:block;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category h3 {
+            margin-bottom: 40px;
+            font-size: 24px;
+            background-color: #fde7ed;
+            padding: 10px;
+            color: pink;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select, .form-group span {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .form-group span {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #e9ecef;
+            margin-left: -5px;
+            display: inline-block;
+        }
+        .form-group select {
+            width: calc(100% - 20px);
+        }
+        .form-group input[type="number"] {
+            width: 120px;
+        }
+        .form-group input[type="text"] {
+            width: calc(100% - 20px);
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between; /* 좌우 여백을 갖도록 설정 */
+            align-items: center; /* 세로 중앙 정렬 */
+            margin-bottom: 20px; /* 하단 여백 추가 */
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #929292;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom:15px;
+            margin-right:10px;
+        }
+        .buttons button:hover {
+            background-color: #5f5f5f;
+        }
+        h1 {
+            color: #5e5e5e; /* 원하는 색상 코드나 이름으로 변경 */
+            margin-bottom:40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <a href="메뉴바2.html">
+            <button>Home</button>
+        </a>
+        <h1>식단 / 운동 / 체중</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        
+</head>
+<body>
+    <div class="grid-container">
+        <!-- 식단 -->
+        <div class="grid-item">
+            <div class="category">
+                <h3>식단</h3>
+                <!-- 식사 기록 -->
+                <div class="form-group">
+                    <label for="breakfast">Breakfast</label>
+                    <select id="breakfast" name="breakfast">
+                        <option value="selected">--선택--</option>
+                        <option value="오트밀">오트밀 - 30kcal</option>
+                        <option value="그릭요거트">그릭요거트 - 50kcal</option>
+                        <option value="에너지바">에너지바 - 100kcal</option>
+                        <option value="김치볶음밥">김치볶음밥 - 200kcal</option>
+                        <option value="오이김비빔밥">오이김비빔밥 - 138kcal</option>
+                        <option value="참치계란덮밥">참치계란덮밥 - 157kcal</option>
+                        <option value="닭가슴살">닭가슴살 - 98kcal</option>
+                        <option value="단백질쉐이크">단백질쉐이크 - 85kcal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lunch">Lunch</label>
+                    <select id="lunch" name="lunch">
+                        <option value="selected">--선택--</option>
+                        <option value="오트밀">오트밀 - 30kcal</option>
+                        <option value="그릭요거트">그릭요거트 - 50kcal</option>
+                        <option value="에너지바">에너지바 - 100kcal</option>
+                        <option value="김치볶음밥">김치볶음밥 - 200kcal</option>
+                        <option value="오이김비빔밥">오이김비빔밥 - 138kcal</option>
+                        <option value="참치계란덮밥">참치계란덮밥 - 157kcal</option>
+                        <option value="닭가슴살">닭가슴살 - 98kcal</option>
+                        <option value="단백질쉐이크">단백질쉐이크 - 85kcal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dinner">Dinner</label>
+                    <select id="dinner" name="dinner">
+                        <option value="selected">--선택--</option>
+                        <option value="오트밀">오트밀 - 30kcal</option>
+                        <option value="그릭요거트">그릭요거트 - 50kcal</option>
+                        <option value="에너지바">에너지바 - 100kcal</option>
+                        <option value="김치볶음밥">김치볶음밥 - 200kcal</option>
+                        <option value="오이김비빔밥">오이김비빔밥 - 138kcal</option>
+                        <option value="참치계란덮밥">참치계란덮밥 - 157kcal</option>
+                        <option value="닭가슴살">닭가슴살 - 98kcal</option>
+                        <option value="단백질쉐이크">단백질쉐이크 - 85kcal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="snack">Snack</label>
+                    <select id="snack" name="snack">
+                        <option value="selected">--선택--</option>
+                        <option value="오트밀">오트밀 - 30kcal</option>
+                        <option value="그릭요거트">그릭요거트 - 50kcal</option>
+                        <option value="에너지바">에너지바 - 100kcal</option>
+                        <option value="김치볶음밥">김치볶음밥 - 200kcal</option>
+                        <option value="오이김비빔밥">오이김비빔밥 - 138kcal</option>
+                        <option value="참치계란덮밥">참치계란덮밥 - 157kcal</option>
+                        <option value="닭가슴살">닭가슴살 - 98kcal</option>
+                        <option value="단백질쉐이크">단백질쉐이크 - 85kcal</option>
+                    </select>
+                </div>
+                <!-- 물 섭취 기록 -->
+                <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+                <div class="form-group">
+                    <label for="water_goal">목표 물 섭취량</label>
+                    <select id="water_goal" name="water_goal">
+                        <option value="selected">--선택--</option>
+                        <option value="1">1L</option>
+                        <option value="1.5">1.5L</option>
+                        <option value="2">2L</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="water_intake">물 섭취량</label>
+                    <input type="number" id="water_intake" name="water_intake" placeholder="섭취량 (L)">
+                </div>
+            </div>
+        </div>
+        <!-- 운동 -->
+        <div class="grid-item">
+            <div class="category">
+                <h3>운동</h3>
+                <div class="form-group">
+                    <label for="Exercise">Exercise</label>
+                    <select id="Exercise" name="Exercise">
+                        <option value="selected">--선택--</option>
+                        <option value="달리기">달리기</option>
+                        <option value="계단 오르기">계단 오르기</option>
+                        <option value="스쿼트">스쿼트</option>
+                        <option value="필라테스">필라테스</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exercise_time">운동 시간 (분)</label>
+                    <input type="number" id="exercise_time" name="exercise_time" placeholder="운동 시간 (분)">
+                </div>
+            </div>
+        </div>
+        <!-- 체중 -->
+        <div class="grid-item">
+            <div class="category">
+                <h3>체중</h3>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" required>
+                    <input type="number" id="weight1" name="weight1" step="0.1" placeholder="kg">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" required>
+                    <input type="number" id="weight2" name="weight2" step="0.1" placeholder="kg">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" required>
+                    <input type="number" id="weight3" name="weight3" step="0.1" placeholder="kg">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" required>
+                    <input type="number" id="weight4" name="weight4" step="0.1" placeholder="kg">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" required>
+                    <input type="number" id="weight5" name="weight5" step="0.1" placeholder="kg">
+                    <hr style="border-width:1px 0 0 0; border-style:dashed; border-color:#575757; margin: 20px 0;">
+
+                </div>
+                <canvas id="weightChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 초기 차트 설정
+        var ctx = document.getElementById('weightChart').getContext('2d');
+        var weightChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['체중 1', '체중 2', '체중 3', '체중 4', '체중 5'],
+                datasets: [{
+                    label: '체중 (kg)',
+                    data: [0, 0, 0, 0, 0],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '기간'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '체중 (kg)'
+                        },
+                        suggestedMin: 0
+                    }
+                }
+            }
+        });
+
+        // 입력 값이 변경될 때 차트 업데이트
+        function updateChart() {
+            weightChart.data.datasets[0].data = [
+                parseFloat(document.getElementById('weight1').value) || 0,
+                parseFloat(document.getElementById('weight2').value) || 0,
+                parseFloat(document.getElementById('weight3').value) || 0,
+                parseFloat(document.getElementById('weight4').value) || 0,
+                parseFloat(document.getElementById('weight5').value) || 0
+            ];
+            weightChart.update();
+        }
+
+        // 각 입력 필드에 이벤트 리스너 추가
+        document.getElementById('weight1').addEventListener('input', updateChart);
+        document.getElementById('weight2').addEventListener('input', updateChart);
+        document.getElementById('weight3').addEventListener('input', updateChart);
+        document.getElementById('weight4').addEventListener('input', updateChart);
+        document.getElementById('weight5').addEventListener('input', updateChart);
+    </script>
+</body>
+</html>

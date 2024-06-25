@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체중관리 대시보드</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6495;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .tabs button:hover {
+            background-color: #db0e60;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+        .form-group input[type="time"], .form-group input[type="number"] {
+            width: calc(100% - 40px);
+        }
+        .form-group span {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #e9ecef;
+            margin-left: -5px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+        canvas {
+            width: 100%;
+            height: 400px;
+        }
+        .nutrition {
+            display: flex;
+            justify-content: space-between;
+        }
+        .nutrition input {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>체중관리 대시보드</h2>
+        <div class="tabs">
+            <button onclick="openTab('diet')">식단</button>
+            <button onclick="openTab('exercise')">운동</button>
+            <button onclick="openTab('weight')">체중</button>
+        </div>
+        <div id="diet" class="content">
+            <h2>식단</h2>
+            <form id='diet'>
+                <div class="form-group">
+                    <label for="calories">칼로리 (kcal)</label>
+                    <input type="number" id="calories" name="calories" required>
+                </div>
+                <div class="form-group">
+                    <label>Food</label>
+                    <div>
+                        <select id="breakfast" name="breakfast">
+                            <option value="">Breakfast</option>
+                            <option value="오트밀">오트밀</option>
+                            <option value="그릭요거트">그릭요거트</option>
+                            <option value="에너지바">에너지바</option>
+                            <option value="김치볶음밥">김치볶음밥</option>
+                            <option value="칼국수">칼국수</option>
+                        </select>
+                        <div class="form-group">
+                            <div class="nutrition">
+                                <input type="number" placeholder="탄수화물 (g)" step="0.1">
+                                <input type="number" placeholder="단백질 (g)" step="0.1">
+                                <input type="number" placeholder="지방 (g)" step="0.1">
+                                <input type="number" placeholder="식이섬유 (g)" step="0.1">
+                                <input type="number" placeholder="당 (g)" step="0.1">
+                                <input type="number" placeholder="나트륨 (mg)" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <select id="lunch" name="lunch">
+                            <option value="">Lunch</option>
+                            <option value="오트밀">오트밀</option>
+                            <option value="그릭요거트">그릭요거트</option>
+                            <option value="에너지바">에너지바</option>
+                            <option value="김치볶음밥">김치볶음밥</option>
+                            <option value="칼국수">칼국수</option>
+                        </select>
+                        <div class="form-group">
+                            <div class="nutrition">
+                                <input type="number" placeholder="탄수화물 (g)" step="0.1">
+                                <input type="number" placeholder="단백질 (g)" step="0.1">
+                                <input type="number" placeholder="지방 (g)" step="0.1">
+                                <input type="number" placeholder="식이섬유 (g)" step="0.1">
+                                <input type="number" placeholder="당 (g)" step="0.1">
+                                <input type="number" placeholder="나트륨 (mg)" step="1">
+                            </div>
+                        </div>
+                    <div>
+                        <select id="dinner" name="dinner">
+                            <option value="">Dinner</option>
+                            <option value="오트밀">오트밀</option>
+                            <option value="그릭요거트">그릭요거트</option>
+                            <option value="에너지바">에너지바</option>
+                            <option value="김치볶음밥">김치볶음밥</option>
+                            <option value="칼국수">칼국수</option>
+                        </select>
+                        <div class="form-group">
+                            <div class="nutrition">
+                                <input type="number" placeholder="탄수화물 (g)" step="0.1">
+                                <input type="number" placeholder="단백질 (g)" step="0.1">
+                                <input type="number" placeholder="지방 (g)" step="0.1">
+                                <input type="number" placeholder="식이섬유 (g)" step="0.1">
+                                <input type="number" placeholder="당 (g)" step="0.1">
+                                <input type="number" placeholder="나트륨 (mg)" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <select id="snack" name="snack">
+                            <option value="">Snack</option>
+                            <option value="오트밀">오트밀</option>
+                            <option value="그릭요거트">그릭요거트</option>
+                            <option value="에너지바">에너지바</option>
+                            <option value="김치볶음밥">김치볶음밥</option>
+                            <option value="칼국수">칼국수</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="water-goal">목표 물 섭취량 (L)</label>
+                    <div class="물">
+                        <img src="water.jpeg">
+                    </div>
+                    <input type="number" id="water-goal" name="water-goal" step="0.1" required>
+                    <span>L</span>
+                </div>
+                <div class="form-group">
+                    <label for="water-intake">물 섭취량 (L)</label>
+                    <input type="number" id="water-intake" name="water-intake" step="0.1" required>
+                    <span>L</span>
+                </div>
+                <div class="buttons">
+                    <button type="button">저장</button>
+                </div>
+            </form>
+        </div>
+        <div id="exercise" class="content">
+            <h3>운동</h3>
+            <form id='exercise'>
+                <div class="form-group">
+                    <label><h2>운동 종류</h2></label>
+                    <input type="checkbox" id="walking" name="exercise-type" value="walking">
+                    <label for="walking">걷기</label>
+                    <input type="checkbox" id="running" name="exercise-type" value="running">
+                    <label for="running">달리기</label>
+                    <input type="checkbox" id="cycling" name="exercise-type" value="cycling">
+                    <label for="cycling">자전거</label>
+                    <input type="checkbox" id="stairs" name="exercise-type" value="stairs">
+                    <label for="stairs">계단 오르기</label>
+                    <input type="checkbox" id="yoga" name="exercise-type" value="yoga">
+                    <label for="yoga">요가</label>
+                    <input type="checkbox" id="pilates" name="exercise-type" value="pilates">
+                    <label for="pilates">필라테스</label>
+                    <input type="checkbox" id="gym" name="exercise-type" value="gym">
+                    <label for="gym">헬스</label>
+                </div>
+                <div class="form-group">
+                    <label for="exercise-duration">운동 시간 (시간)</label>
+                    <input type="number" id="exercise-duration" name="exercise-duration" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="calories-burned">칼로리 소모 (kcal)</label>
+                    <input type="number" id="calories-burned" name="calories-burned" required>
+                    <span><a href="https://naver.me/xdfUvmEK" target="_blank">운동 칼로리 계산기</a></span>
+                </div>
+                <div class="buttons">
+                    <button type="button">저장</button>
+                </div>
+            </form>
+        </div>
+        <div id="weight" class="content">
+            <h3>체중</h3>
+            <form id="weight-form">
+                <div class="form-group">
+                    <label for="weight">체중 (kg)</label>
+                    <input type="number" id="weight" name="weight" step="0.1" required>
+                    <span>kg</span>
+                </div>
+                <div class="buttons">
+                    <button type="button">저장</button>
+                </div>
+            </form>
+            <canvas id="weightChart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        document.getElementById('weight-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weight = document.getElementById('weight').value;
+            const date = new Date().toISOString().slice(0, 10);
+            addData(weightChart, date, weight);
+        });
+
+        const ctx = document.getElementById('weightChart').getContext('2d');
+        const weightChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: '체중 (kg)',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'week'
+                        },
+                        title: {
+                            display: true,
+                            text: '기간'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '체중 (kg)'
+                        }
+                    }
+                }
+            }
+        });
+
+        function addData(chart, label, data) {
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach(dataset => {
+                dataset.data.push(data);
+            });
+            chart.update();
+        }
+    </script>
+</body>
+</html>
